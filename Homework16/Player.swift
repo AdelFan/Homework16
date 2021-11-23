@@ -12,7 +12,7 @@ struct Player: View {
         ZStack {
             Rectangle()
                 .frame(width: 400, height: 75)
-                .foregroundColor(.clear)
+                .foregroundColor(.gray)
                 .padding(.top, 590)
             
             Image("image_0")
@@ -43,7 +43,10 @@ struct Player: View {
                     .padding(.top, 590)
                     .padding(.leading, 320)
             })
+                
         }
+
+        
     }
 }
 

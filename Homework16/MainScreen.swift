@@ -26,10 +26,7 @@ struct MainScreen: View {
                 }
                 
                 VStack {
-                    Text("Радио")
-                        .bold()
-                        .multilineTextAlignment(.center)
-                        .font(.title)
+                   Radio()
                 }
                 .tabItem {
                     Image(systemName: "dot.radiowaves.left.and.right")

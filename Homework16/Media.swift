@@ -13,6 +13,7 @@ struct strItem: Hashable, Identifiable {
     let image: String
 }
 
+
 struct Media: View {
     @State private var someBool = true
     @State private var selection = Set<String>()
