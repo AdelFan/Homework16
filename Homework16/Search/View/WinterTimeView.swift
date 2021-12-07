@@ -69,7 +69,7 @@ struct WinterTimeView: View {
                 
 //                Divider()
                 HStack {
-                    Text("Настроение - осень")
+                    Text("Настроение - Осень")
                         .bold()
                         .font(.system(size: 21))
                         .padding(.trailing, 100)
