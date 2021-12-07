@@ -8,52 +8,25 @@
 import SwiftUI
 
 // MARK: - Model
+
 struct Radio: View {
-    
-    @State private var bigItem = [
-        BigItems(title1: "Новый выпуск", title2: "Музыкальный базар с Бастой", title3: "Новое шоу", image: "basta"),
-        BigItems(title1: "Избранный плейлист", title2: "Hip-Hop", title3: "Apple Music на русском", image: "hip-hop"),
-        BigItems(title1: "Новый альбом", title2: "FLOWJOB", title3: "SQWOZ BAB", image: "flowjob"),
-        BigItems(title1: "Новый альбом", title2: "30", title3: "Adele", image: "adele")
-    ]
-    
-    @State private var minItem = [
-        MinItems(image: "relax", title1: "Музыка для расслабления", title2: "Электронная медитация"),
-        MinItems(image: "popular", title1: "Популярное", title2: "То, что слушают прямо сейчас"),
-        MinItems(image: "music", title1: "Классика электронной музыки", title2: "Как рождался саунд будущего"),
-        MinItems(image: "electricrock", title1: "Классика рока", title2: "Гении гитарного звука"),
-        MinItems(image: "classic", title1: "Классика", title2: "Выдающиеся образцы жанра"),
-        MinItems(image: "rapmusic", title1: "Хип-Хоп", title2: "Идеальные биты и рифмы")
-    ]
-    
+    private let bItems = RadioModel.bigItem
+    private let mItems = RadioModel.minItem
     let columns = [
-        //        GridItem(.fixed(100)),
         GridItem(.flexible())
     ]
-    
-    struct BigItems: Hashable, Decodable {
-        let title1: String
-        let title2: String
-        let title3: String
-        let image: String
-    }
-    
-    struct MinItems: Hashable, Decodable {
-        let image: String
-        let title1: String
-        let title2: String
-    }
-    
-    
+
     // MARK: - View
     var body: some View {
         NavigationView {
             ScrollView(.vertical) {
                 ScrollView(.horizontal, showsIndicators: false) {
-                    Divider()
+//                    Divider()
                     LazyHGrid(rows: columns, alignment: .top) {
-                        ForEach(bigItem, id: \.self) { item in
+                        ForEach(bItems, id: \.self) { item in
                             VStack(alignment: .leading) {
+                                Divider()
+                                    .padding(.leading)
                                 Text(item.title1)
                                     .foregroundColor(.gray)
                                     .font(.system(size: 18))
@@ -77,12 +50,15 @@ struct Radio: View {
                                     .padding(.trailing, 0)
                                     .shadow(radius: 5)
                                     .padding(.bottom, 8)
+                                Divider()
+                                    .padding(.leading)
                             }
                         }
                     }
+                    .padding(.trailing)
                 }
                 .navigationTitle("Радио")
-                Divider()
+//                Divider()
                 Text("Станции")
                     .bold()
                     .font(.system(size: 24))
@@ -90,19 +66,19 @@ struct Radio: View {
                     .padding(.trailing, 260)
                 
                 LazyVGrid(columns: columns, alignment: .leading) {
-                    ForEach(minItem, id: \.self) { item in
+                    ForEach(mItems, id: \.self) { item in
                         HStack {
                             Image(item.image)
                                 .resizable()
                                 .frame(width: 110, height: 110)
                                 .cornerRadius(9)
-                                .padding(.leading, 1)
+                                .padding(.leading, 15)
                                 .padding(.trailing, 15)
                                 .shadow(radius: 3)
                             VStack(alignment: .leading) {
-                            Text(item.title1)
+                                Text(item.title1)
                                     .font(.system(size: 18))
-                            Text(item.title2)
+                                Text(item.title2)
                                     .foregroundColor(.gray)
                                     .font(.system(size: 15))
                             }
@@ -111,7 +87,7 @@ struct Radio: View {
                         
                     }
                 }
-            
+                
                 
             }
         }

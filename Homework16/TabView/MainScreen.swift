@@ -9,15 +9,16 @@ import SwiftUI
 
 struct MainScreen: View {
     
-    init() {
-        UITabBar.appearance().backgroundColor = .systemGray5
-    }
+    @State var expand = false
+    @Namespace var animation
+    
     var body: some View {
-        ZStack {
+        ZStack(alignment: Alignment(horizontal: .center, vertical: .bottom),
+               content: {
             TabView {
                 ZStack {
                     VStack {
-                        Media()
+                        MediaView()
                     }
                 }
                 .tabItem {
@@ -33,19 +34,17 @@ struct MainScreen: View {
                     Text("Радио")
                 }
                 VStack {
-                    Text("Поиск")
-                        .bold()
-                        .multilineTextAlignment(.center)
-                        .font(.title)
+                    SearchView()
                 }
                 .tabItem {
+                    
                     Image(systemName: "magnifyingglass")
                     Text("Поиск")
                 }
             }
             .accentColor(.red)
-            Player()
-        }
+            MiniPlayer(animation: animation, expand: $expand)
+               })
     }
 }
 
